@@ -21,8 +21,6 @@ export const ensureTokenIsValidMiddleware = async (
     }
 
     res.locals.tokenId = parseInt(decoded.sub);
-
-    res.locals.admin = decoded.admin;
   });
 
   return next();

@@ -3,13 +3,11 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
   OneToMany,
   BeforeInsert,
 } from "typeorm";
-import Schedule from "./schedules.entity";
 import { hash } from "bcryptjs";
+import Contact from "./contacts.entity";
 
 @Entity("users")
 class User {
@@ -22,23 +20,17 @@ class User {
   @Column({ type: "varchar", length: 45, unique: true })
   email: string;
 
-  @Column({ type: "boolean", nullable: true, default: false })
-  admin: boolean;
+  @Column({ type: "varchar", length: 45 })
+  phone: string;
 
   @Column({ type: "varchar", length: 120 })
   password: string;
 
   @CreateDateColumn({ type: "date" })
-  createdAt: Date | string;
+  registerDate: Date | string;
 
-  @UpdateDateColumn({ type: "date" })
-  updatedAt: Date | string;
-
-  @DeleteDateColumn({ type: "date", nullable: true })
-  deletedAt: Date | string;
-
-  @OneToMany(() => Schedule, (schedules) => schedules.user)
-  schedules: Schedule[];
+  @OneToMany(() => Contact, (contacts) => contacts.user)
+  contacts: Contact[];
 
   @BeforeInsert()
   async hashPassword() {
