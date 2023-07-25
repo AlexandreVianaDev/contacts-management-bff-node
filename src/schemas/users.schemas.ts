@@ -6,11 +6,9 @@ export const userSchema = z.object({
   id: z.number().int().positive(),
   name: z.string().max(45),
   email: z.string().max(45).email(),
+  phone: z.string().max(45),
   password: z.string().max(120),
-  admin: z.boolean().nullish(),
-  createdAt: dateSchema,
-  updatedAt: dateSchema,
-  deletedAt: dateSchema.nullish(),
+  registerDate: dateSchema,
 });
 
 export const userWithoutPasswordSchema = userSchema.omit({
@@ -21,18 +19,14 @@ export const userListSchema = z.array(userWithoutPasswordSchema);
 
 export const userCreateSchema = userSchema.omit({
   id: true,
-  createdAt: true,
-  updatedAt: true,
-  deletedAt: true,
+  registerDate: true,
 });
 
 export const userLoginSchema = userCreateSchema.omit({
-  admin: true,
   name: true,
+  phone: true,
 });
 
-export const userUpdateSchema = userCreateSchema.omit({
-  admin: true,
-});
+export const userUpdateSchema = userCreateSchema;
 
-export const userUpdateBodySchema = userUpdateSchema.partial();
+export const userUpdateBodySchema = userCreateSchema.partial();
