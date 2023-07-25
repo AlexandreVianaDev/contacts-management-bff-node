@@ -12,15 +12,15 @@ export const createUserService = async (
 ): Promise<TUserWithoutPassword> => {
   const usersRepo: Repository<User> = AppDataSource.getRepository(User);
 
-  if (!payload.admin) {
-    payload.admin = false;
-  }
+  // if (!payload.admin) {
+  //   payload.admin = false;
+  // }
 
-  const admin: boolean = payload.admin;
+  // const admin: boolean = payload.admin;
 
   const payloadWithAdmin = {
     ...payload,
-    admin,
+    // admin,
   };
 
   const userWithPassword: User = usersRepo.create(payloadWithAdmin);

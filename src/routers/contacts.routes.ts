@@ -14,40 +14,43 @@ import { ensureTokenIsValidMiddleware } from "../middlewares/ensureTokenIsValid.
 import { ensureUserIsAdminMiddleware } from "../middlewares/ensureUserIsAdmin.middleware";
 import { ensureUserIdExistsMiddleware } from "../middlewares/ensureUserIdExists.middleware";
 import { validateBodyMiddleware } from "../middlewares/validateBody.middleware";
+import {
+  createContactController,
+  deleteContactController,
+  getContactsController,
+  updateContactController,
+} from "../controllers/contacts.controllers";
+import {
+  contactCreateSchema,
+  contactUpdateBodySchema,
+} from "../schemas/contacts.schemas";
+import { ensureContactIdExistsMiddleware } from "../middlewares/ensureContactIdExists.middleware";
 import { ensureUserIsOwnerMiddleware } from "../middlewares/ensureUserIsOwner.middleware";
 
-export const usersRoutes: Router = Router();
+export const contactsRoutes: Router = Router();
 
-usersRoutes.post(
-  "",
-  validateBodyMiddleware(userCreateSchema),
-  ensureEmailNotExistsMiddleware,
-  createUserController
-);
-
-usersRoutes.get(
+contactsRoutes.post(
   "",
   ensureTokenIsValidMiddleware,
-  // ensureUserIsAdminMiddleware,
-  getUsersController
+  validateBodyMiddleware(contactCreateSchema),
+  createContactController
 );
 
-usersRoutes.patch(
+contactsRoutes.get("", ensureTokenIsValidMiddleware, getContactsController);
+
+contactsRoutes.patch(
   "/:id",
-  ensureUserIdExistsMiddleware,
   ensureTokenIsValidMiddleware,
-  // ensureUserIsAdminMiddleware,
+  ensureContactIdExistsMiddleware,
   ensureUserIsOwnerMiddleware,
-  ensureEmailNotExistsMiddleware,
-  validateBodyMiddleware(userUpdateBodySchema),
-  updateUserController
+  validateBodyMiddleware(contactUpdateBodySchema),
+  updateContactController
 );
 
-usersRoutes.delete(
+contactsRoutes.delete(
   "/:id",
-  ensureUserIdExistsMiddleware,
   ensureTokenIsValidMiddleware,
+  ensureContactIdExistsMiddleware,
   ensureUserIsOwnerMiddleware,
-  // ensureUserIsAdminMiddleware,
-  deleteUserController
+  deleteContactController
 );
