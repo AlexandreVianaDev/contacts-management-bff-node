@@ -23,3 +23,8 @@ export type TUserUpdate = DeepPartial<TUserUpdateWithoutDeepPartial>;
 export interface IToken {
   token: string;
 }
+
+export interface ILoginResponse {
+  token: string;
+  user: TUserWithoutPassword;
+}
