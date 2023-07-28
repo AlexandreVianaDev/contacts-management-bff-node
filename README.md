@@ -19,7 +19,7 @@ GitHub do FrontEnd: https://github.com/AlexandreVianaDev/contacts-management-ffb
 # Rotas sem autorização (token)
 
 ## Criar usuário
-POST /users
+**POST /users**
 
 Corpo da Requisição:
 {
@@ -30,7 +30,7 @@ Corpo da Requisição:
 }
 
 ## Login
-POST /login
+**POST /login**
 
 Corpo da Requisição:
 {
@@ -41,15 +41,15 @@ Corpo da Requisição:
 # Rotas que requerem autorização (token)
 
 ## Autologin
-GET /login
+**GET /login**
 Basta enviar o Bearer Token que ele vai te devolver as informações do usuário
 
 ## Listar usuários
-GET /users
+**GET /users**
 Basta enviar o Bearer Token que ele vai te devolver a lista de todos os usuários
 
 ## Atualizar usuário
-POST /users/:id
+**POST /users/:id**
 
 Corpo da Requisição:
 {
@@ -60,15 +60,15 @@ Corpo da Requisição:
 }
 
 ## Deletar usuário
-DELETE /users/:id
+**DELETE /users/:id**
 Basta enviar o Bearer Token que ele vai deletar o usuário
 
 ## Buscar contatos do usuário
-GET /contacts
+**GET /contacts**
 Basta enviar o Bearer Token que ele vai te devolver a lista de todos os contatos do usuário logado
 
 ## Criar contato
-POST /contacts
+**POST /contacts**
 
 Corpo da Requisição:
 {
@@ -78,7 +78,7 @@ Corpo da Requisição:
 }
 
 ## Atualizar contato
-POST /contacts/:id
+**POST /contacts/:id**
 
 Corpo da Requisição:
 {
@@ -88,5 +88,5 @@ Corpo da Requisição:
 }
 
 ## Deletar contato
-DELETE /contacts/:id
+**DELETE /contacts/:id**
 Basta enviar o Bearer Token que ele vai deletar o contato
